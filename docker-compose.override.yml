@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  apache:
+    image: juanluisbaptiste/apache:dev
+    build:
+      context: '.'
+      args:
+       APACHE_VERSION: ${APACHE_VERSION}
+    container_name: apache
