@@ -6,6 +6,9 @@ RUN apt update && \
     apt upgrade -y
 
 # Copy apache vhost file to proxy php requests to php-fpm container
-COPY conf/*.conf /usr/local/apache2/conf/
+COPY 000-default.conf /usr/local/apache2/conf/
+COPY conf/ /usr/local/apache2/conf/conf/
 RUN echo "Include /usr/local/apache2/conf/000-default.conf" \
-    >> /usr/local/apache2/conf/httpd.conf
+    >> /usr/local/apache2/conf/httpd.conf && \
+    echo "Include /usr/local/apache2/conf/conf/*.conf" \
+        >> /usr/local/apache2/conf/httpd.conf
